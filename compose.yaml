@@ -1,0 +1,9 @@
+services:
+  keycloak:
+    build
+
+  django:
+
+
+  coldfront:
+
