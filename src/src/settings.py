@@ -28,6 +28,17 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# Mozilla OpenID Config
+AUTHENTICATION_BACKENDS = (
+    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+)
+
+OIDC_RP_CLIENT_ID: "django"
+OIDC_RP_CLIENT_SECRET: 'x9RjLZgUP7RZy95akYExa9RyCWIpRL42'
+OIDC_OP_AUTHORIZATION_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/auth"
+OIDC_OP_TOKEN_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/token"
+OIDC_OP_USER_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/userinfo"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mozilla_django_oidc',
+    'cloud.apps.CloudConfig',
 ]
 
 MIDDLEWARE = [

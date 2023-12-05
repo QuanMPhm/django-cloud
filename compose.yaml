@@ -1,9 +1,23 @@
 services:
   keycloak:
-    build
+    image: quay.io/keycloak/keycloak:23.0.1
+    environment:
+      KEYCLOAK_ADMIN: "admin"
+      KEYCLOAK_ADMIN_PASSWORD: "admin"
+    ports:
+      - "8080:8080"
+
+    command: ["start-dev"]
+
+
+
 
   django:
+    build: .
+    environment:
+      
 
+    command: ["sleep", "99999"]
 
-  coldfront:
+  #coldfront:
 
