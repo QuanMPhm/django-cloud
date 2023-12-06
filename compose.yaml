@@ -9,15 +9,10 @@ services:
 
     command: ["start-dev"]
 
-
-
-
   django:
     build: .
-    environment:
-      
-
-    command: ["sleep", "99999"]
+    ports:
+      - "8000:8000"
 
   #coldfront:
 

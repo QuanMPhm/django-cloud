@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--zw#7)!f^1i4eebolfu9wsb-k3mfq*a3v@me-)b%c6t!lt_h3j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'django']
 
 
 # Mozilla OpenID Config
@@ -33,11 +33,16 @@ AUTHENTICATION_BACKENDS = (
     'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
 )
 
-OIDC_RP_CLIENT_ID: "django"
-OIDC_RP_CLIENT_SECRET: 'x9RjLZgUP7RZy95akYExa9RyCWIpRL42'
+OIDC_RP_CLIENT_ID = "django"
+OIDC_RP_CLIENT_SECRET = 'x9RjLZgUP7RZy95akYExa9RyCWIpRL42'
 OIDC_OP_AUTHORIZATION_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/auth"
 OIDC_OP_TOKEN_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/token"
 OIDC_OP_USER_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/userinfo"
+OIDC_RP_SIGN_ALGO = 'RS256'    # Because HS256 didn't seem to work??? https://github.com/mozilla/mozilla-django-oidc/issues/382
+OIDC_OP_JWKS_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/certs"
+LOGIN_REDIRECT_URL = "/cloud/login"
+LOGIN_REDIRECT_URL_FAILURE = "/cloud/login"
+
 
 # Application definition
 
@@ -134,3 +139,29 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'default': {
+#             'format': '[DJANGO] %(levelname)s %(asctime)s %(module)s '
+#                         '%(name)s.%(funcName)s:%(lineno)s: %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'default',
+#         }
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         }
+#     },
+# }

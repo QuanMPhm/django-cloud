@@ -11,6 +11,7 @@ def login(request):
 
     template = loader.get_template("cloud/login.html")
     context = {
-        'user' : 1
+        'user' : request.user,
+        'url'  : request.path
     }
     return HttpResponse(template.render(context, request))
