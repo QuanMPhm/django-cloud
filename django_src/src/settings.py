@@ -34,7 +34,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 OIDC_RP_CLIENT_ID = "django"
-OIDC_RP_CLIENT_SECRET = 'x9RjLZgUP7RZy95akYExa9RyCWIpRL42'
+OIDC_RP_CLIENT_SECRET = 'idMgMI8wnKX1q25IveqmkNaIEfbP1bVX'
 OIDC_OP_AUTHORIZATION_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/auth"
 OIDC_OP_TOKEN_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/token"
 OIDC_OP_USER_ENDPOINT = "http://keycloak:8080/realms/master/protocol/openid-connect/userinfo"

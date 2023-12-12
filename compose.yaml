@@ -7,12 +7,36 @@ services:
     ports:
       - "8080:8080"
 
-    command: ["start-dev"]
+    command: start-dev --log-level=INFO
 
   django:
-    build: .
+    build: 
+      context: .
+      dockerfile: django.Dockerfile
     ports:
       - "8000:8000"
 
-  #coldfront:
+  coldfront:
+    build:
+      context: .
+      dockerfile: coldfront.Dockerfile
+
+    environment:
+      DEBUG : True
+      CSRF_COOKIE_SAMESITE : 'None'
+      SESSION_COOKIE_SAMESITE : 'None'
+      PLUGIN_AUTH_OIDC : True
+      PLUGIN_MOKEY : True
+      OIDC_RP_CLIENT_ID : "coldfront"
+      OIDC_RP_CLIENT_SECRET : 'CiQqQu8faL8wfhzyvg21JQt9uEGvKAev'
+      OIDC_OP_AUTHORIZATION_ENDPOINT : "http://keycloak:8080/realms/master/protocol/openid-connect/auth"
+      OIDC_OP_TOKEN_ENDPOINT : "http://keycloak:8080/realms/master/protocol/openid-connect/token"
+      OIDC_OP_USER_ENDPOINT : "http://keycloak:8080/realms/master/protocol/openid-connect/userinfo"
+      OIDC_RP_SIGN_ALGO : 'RS256'    # Because HS256 didn't seem to work??? https://github.com/mozilla/mozilla-django-oidc/issues/382
+      OIDC_OP_JWKS_ENDPOINT : "http://keycloak:8080/realms/master/protocol/openid-connect/certs"
+    
+    ports:
+      - "7000:7000"
+    
+
 

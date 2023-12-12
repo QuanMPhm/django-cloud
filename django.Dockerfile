@@ -2,10 +2,10 @@
 
 FROM python:3.11-alpine
 
-COPY requirements.txt /requirements.txt
+COPY django_requirements.txt /requirements.txt
 RUN pip3 install -r requirements.txt
 
-COPY ./src /django_src
+COPY ./django_src /django_src
 
 EXPOSE 8000
 
